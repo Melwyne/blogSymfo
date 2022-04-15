@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ form(article) }}
+        {% else %}
+            <a href="{{ path('app_login') }}">Veuille-vous connecter</a>
+        {% endif %}
+    </main>
+{% endblock %}

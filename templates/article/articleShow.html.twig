@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Articles</h1>
+    {% for article in articles %}
+        <span>Titre : {{ article.title }}</span> <br>
+        <span>Description : {{ article.description }}</span><br>
+        <span>Date de création : {{ article.creationDate|date('d/m/Y') }}</span><br>
+        <span>Date de modification : {{ article.updateDate|date('d/m/Y') }}</span><br>
+        <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+        {% for type in article.type %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+        {% endfor %}
+        </select>
+        <span>Ecrit par : {{ article.user.name }}</span><br>
+        <span>Nombre de like : {{ article.love|length }}</span>
+        <!-- 'id' correspond à {id} dans l'url de la route de ma fonction, c'est le nom clé de article.id -->
+        <a href="{{ path('love', {'id':article.id}) }}">Liker</a><br><br>
+        {% if article.user.id == app.user.id or app.user.roles == [ 'ROLE_ADMIN' ] %}
+            <a href="{{ path('updateArticle', {'id':article.id}) }}">Modifier l'article</a><br><br><br>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
+

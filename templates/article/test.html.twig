@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main>
+        {% for user in users %}
+            <span>{{ user.name }}</span><br>
+            <a href="{{ path('removeUser', {'id':user.id}) }}">Supprimer cet utilisateur</a><br><br><br>
+
+        {% endfor %}
+    </main>
+{% endblock %}

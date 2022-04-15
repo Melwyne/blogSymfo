@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <main>
+        <h1>Informations personnelles</h1>
+            <span>Prénom : {{ user.name }}</span> <br>
+            <span>Surnom : {{ user.lastname }}</span><br>
+            <span>Email : {{ user.email }}</span><br>
+            <span>Mot de passe : {{ user.password }}</span><br>
+            <span>Date de naissance : {{ user.birthDate|date('d/m/Y') }}</span><br>
+            <span>Rue : {{ user.numberStreet }}</span><br>
+            <span>Code postal : {{ user.postalCode }}</span><br>
+            <span>Ville : {{ user.city }}</span><br>
+            <span>Image : {{ user.img }}</span><br>
+            <span>Compte actif : {{ user.active }}</span><br>
+            <a href="{{ path ('userInfosUpdate', {'id':user.id}) }}">Modifier</a>
+    </main>
+{% endblock %}
